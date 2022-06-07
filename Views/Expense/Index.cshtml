@@ -1,0 +1,53 @@
+﻿
+@*//fetch data of type models
+*@
+
+@model IEnumerable<InAndOut.Models.Expense>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6"> @*max is 12 col*@
+            <h2 class="text-primary">Expense List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Expense" asp-action="Create" class="btn btn-primary">Create new item</a>
+        </div>
+    </div>
+    <br />
+
+    @*C# code*@
+
+    @if(Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Expense name
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var expense in Model)
+                @*for each data, create a row*@
+                {
+                    <tr>
+                        <td width="50%">@expense.ExpenseName</td>
+                        <td width="50%">@expense.Amount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+
+</div>
+
+
+
